@@ -19,6 +19,39 @@ const productsList = [
   },
 ];
 
+let users = [
+  {
+    id: "111",
+    email: "steve@email.com",
+    name: "Steven",
+    lastName: "Smith",
+    password: "password",
+    favoriteItems: ["345"],
+  },
+];
+
+export const logInUser = (email, password) => {
+  new Promise((resolve, reject) => {
+    const userFound = users.find((user) => {
+      if (user.email === email && user.password === password) {
+        return true;
+      }
+      return false;
+    });
+    console.log("Fetching Data......");
+    setTimeout(() => {
+      try {
+        if (userFound) {
+          resolve(userFound);
+        }
+        throw new Error("Incorrect email or password");
+      } catch (e) {
+        reject(e);
+      }
+    }, 1000);
+  });
+};
+
 export const fetchProducts = () =>
   new Promise((resolve, reject) => {
     console.log("Fetching Data");
