@@ -30,7 +30,7 @@ let users = [
   },
 ];
 
-export const logInUser = (email, password) => {
+export const logInUser = (email, password) =>
   new Promise((resolve, reject) => {
     const userFound = users.find((user) => {
       if (user.email === email && user.password === password) {
@@ -45,12 +45,11 @@ export const logInUser = (email, password) => {
           resolve(userFound);
         }
         throw new Error("Incorrect email or password");
-      } catch (e) {
-        reject(e);
+      } catch (error) {
+        reject(error);
       }
     }, 1000);
   });
-};
 
 export const fetchProducts = () =>
   new Promise((resolve, reject) => {
@@ -63,5 +62,3 @@ export const fetchProducts = () =>
       }
     }, 1000);
   });
-
-export default productsList;
